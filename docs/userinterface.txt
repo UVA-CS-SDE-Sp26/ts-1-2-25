@@ -1,1 +1,21 @@
 
+User interface requirements:
+
+    - When running java topsecret, (with no arguments) the program should list the numbered files
+    available to display.
+    - When it runs with a number as an argument, the contents of that file are displayed on the
+    screen.
+    - The program exits after displaying the list or the specific file or after displaying
+    and error message.
+    - When no 2nd parameter is specified, the program uses the default key for deciphering,
+    but when a 2nd parameter is specified, it is an alternate key to use when deciphering.
+
+
+
+Ideas:
+    - When the program is run (with java topsecret), there are 3 constructors, one with no
+    arguments, one with one integer, and one with an integer and then a string(for the alternate key)
+    - The other way to do this would be with main.
+    - Depending on the number of arguments, the program decides what to do, either to display
+    the list of files, or to display the contents of one file, or to display an error message.
+    The program then exits
