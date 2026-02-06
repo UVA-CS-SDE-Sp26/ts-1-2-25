@@ -19,3 +19,8 @@ Ideas:
     - Depending on the number of arguments, the program decides what to do, either to display
     the list of files, or to display the contents of one file, or to display an error message.
     The program then exits
+
+Tests:
+    - When run with no arguments, should return the list of files
+    - When run with 1 argument, should open that file
+    - When run with 2 arguments, should use the 2nd param to decipher the file whose number matches the 1st parameter
