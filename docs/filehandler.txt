@@ -1,0 +1,76 @@
+File Handler Documentation (Team Member B - Daniel N) Design and Test plan
+Design:
+
+1 Purpose
+
+This component will take a file name or index as input and return the file contents as a string.
+It will not print anything nor handle cmd line input or output.
+
+2 Data file information
+
+All files are stored in: data/ folder
+All files are plain text (.txt)
+
+3 File access and validation
+
+When listing files:
+
+Check that the data folder exists
+Check that the folder contains readable text files
+Return a numbered list of file names
+
+When retrieving file contents:
+
+Check that the requested file exists
+Check that the file can be read
+Return the contents as one string
+If the file cannot be accessed, return error
+
+4 How file reading works at a high level
+
+For listFiles():
+Open data folder
+Identify all .txt files
+Return list of file names, sorted if needed
+
+For getFileContent(fileName):
+Open file
+Read all lines
+Combine for a single string
+Return string
+
+For getFileContent(fileIndex):
+Map index to file name
+Call getFileContent(fileName)
+
+5 Errors
+
+If folder missing or empty, return error
+If file missing, return error
+If file cannot be read, return error
+
+Program Control will handle displaying the error and exiting the program
+
+Testing plan:
+1 Run folder and file listing tests:
+
+Check if:
+folder with multiple files returns correct numbered list
+empty folder returns empty list or warning
+missing folder returns an error
+
+2 Run file content retrieval tests:
+
+Check if:
+a valid file returns the correct contents
+file with special characters returns correct contents
+file with large content returns all contents
+missing file returns an error
+invalid index returns an error
+empty file returns empty string
+
+3 Integration readiness:
+
+Ensure all methods can be called by Program Control without modification
+Ensure no printing occurs in FileHandler
+Ensure errors are returned as exceptions or error messages to Program Control

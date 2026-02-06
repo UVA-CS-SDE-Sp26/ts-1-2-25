@@ -1,1 +1,31 @@
+Program Control Documentation (Team Member C - Briar Thomas) Design and Test Plan
 
+Design:
+
+- Purpose:
+This program will read the input from the User Interface and connect that input to the File Handler.
+If it recieves an argument, it will request the contents of the file and return those contents to display at the User Interface
+If it does not recieve an argument, it will return a numbered list of available files to display at the User Interface
+
+- Process: 
+When called upon by the User Interface, the Program Control will read the first parameter from the user input and use that to determine what it should do.
+  - If a first parameter exists, the Program Control will call upon the File Handler, providing it with the first parameter from the input.
+  It will then send the file contents provided by the File Hendler to the Cipher feature.  The Cipher feature will return a new string of unciphered file
+  contents, which the Program Control will send to User Interface to be displayed
+  - If no first parameter is provided, the Program Control will go through the files in the folder named data, and create a numbered list of those files in
+  the format below.  It will then send that list to the User Interface to be displayed.  If no files are detected, it will instead send a message saying such.
+    01 filea.txt
+    02 fileb.txt
+    03 filec.txt
+
+
+Testing Plan:
+
+- Invalid input
+    - Check if an invalid input (i.e. a non integer input) causes a failure
+
+- Input out of range
+    - Check if an argument that is out of range (i.e. a 5 when there are <5 files) causes a failure
+
+- Asks for correct file
+    - Check if the file recieved by the File Handler is the same one requested (ensure that the Program Control is requesting the correct file)
