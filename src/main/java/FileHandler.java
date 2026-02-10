@@ -60,10 +60,9 @@ public class FileHandler {
         return content.toString();
     }
 
-    // Method to get file contents by index (1-based index like in command line)
+    // Method to get file contents by index
     public String getFileContent(int fileIndex) {
         ArrayList<String> files = listFiles();
-
         if (fileIndex < 1 || fileIndex > files.size()) {
             return "Error: File index " + fileIndex + " is out of range.";
         }
