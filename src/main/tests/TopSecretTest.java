@@ -18,11 +18,13 @@ class TopSecretTest {
         assertEquals("", testPrintFile, "");
     }
 
+    //Test 0, 1, and 2 parameters
     @Test
     void main() {
     }
 
 
+    //Test with an integer, a string that is partly an integer, and a string with no integers
     @Test
     void isInteger() {
     }

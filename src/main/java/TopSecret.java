@@ -13,18 +13,19 @@ public class TopSecret {
 
     //Constructors for 0-2 parameters
     public TopSecret() {
-        this.fileNumber = -1;   //-1 indicates that no file was specified, but I don't think these matter as they arn't being used
-        this.cipher = "";       //Empty string indicates no cipher was specified
+        setFileNumber(-1);  //-1 indicates that no file was specified, but I don't think these matter as they aren't being used
+        setCipher("");      //Empty string indicates no cipher was specified
     }
 
     public TopSecret(int fileNumber) {
-        this.fileNumber = fileNumber;
-        this.cipher = "";       //Empty string indicates no cipher was specified
+        setFileNumber(fileNumber);
+        setCipher("");      //Empty string indicates no cipher was specified
     }
 
     public TopSecret(int fileNumber, String cipher) {
-        this.fileNumber = fileNumber;
-        this.cipher = cipher;
+        setFileNumber(fileNumber);
+        setCipher(cipher);
+
     }
 
     //Main
