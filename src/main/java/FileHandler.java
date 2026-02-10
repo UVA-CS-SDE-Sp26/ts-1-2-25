@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class FileHandler {
 
     // Folder where all our text files are stored
+    // we need to add a folder called data (with Gradle?)
     private final String dataFolder = "data";
 
     // Method to list all .txt files in the data folder
@@ -21,14 +22,14 @@ public class FileHandler {
 
         if (!folder.exists() || !folder.isDirectory()) {
             System.out.println("Error: data folder not found.");
-            return fileList; // return empty list if folder doesn't exist
+            return fileList;
         }
 
         // Only get .txt files
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
         if (files == null || files.length == 0) {
             System.out.println("No files found in data folder.");
-            return fileList; // empty list if folder is empty
+            return fileList;
         }
 
         // Add file names to list
