@@ -29,4 +29,13 @@ class CipherDecoderTest {
 
         assertEquals("a", result);
     }
+
+    @Test
+    void multipleCharactersDecipherCorrectly() {
+        CipherDecoder decoder = new CipherDecoder();
+
+        String result = decoder.decipher("bc");
+
+        assertEquals("ab", result);
+    }
 }
