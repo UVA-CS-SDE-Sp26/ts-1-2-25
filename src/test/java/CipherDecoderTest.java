@@ -25,7 +25,7 @@ class CipherDecoderTest {
     void decipherNewKeyUsesProvidedPath() {
         CipherDecoder decoder = new CipherDecoder();
 
-        String result = decoder.decipherNewKey("b", "ciphers/key.txt");
+        String result = decoder.decipherProvidedKey("b", "ciphers/key.txt");
 
         assertEquals("a", result);
     }

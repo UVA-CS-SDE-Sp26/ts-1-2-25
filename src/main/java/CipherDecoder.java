@@ -10,7 +10,7 @@ public class CipherDecoder {
     }
 
     // Making sure to match current ProgramControl: default key
-    public String decipherNewKey(String input, String keyPath) {
+    public String decipherProvidedKey(String input, String keyPath) {
         return decipherWithKeyFile(input, keyPath);
     }
 
