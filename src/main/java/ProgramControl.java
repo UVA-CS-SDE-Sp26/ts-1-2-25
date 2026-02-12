@@ -1,0 +1,74 @@
+import java.io.File;
+import java.util.ArrayList;
+
+public class ProgramControl {
+
+    private FileHandler fileHandler;
+    //private CipherDecoder cipherDecoder;
+
+    public ProgramControl(){
+        fileHandler = new FileHandler();
+        //cipherDecoder = new CipherDecoder();
+    }
+
+    //run the whole thing
+    public void run(String[] args){
+
+        //list the files if there's no arguments
+        if (args.length == 0) {
+            ArrayList<String> listOfFiles = listFiles();
+            System.out.println(listOfFiles);
+            return;
+        }
+
+        //do the rest of the stuff if args > 0
+        //runs code from FileHandler and CipherDecoder
+        if (args.length >= 1){
+            displayFiles(args);
+        }
+    }
+
+
+    //list files if no args passed
+    private final String datafolder = "data";
+    public ArrayList<String> listFiles(){
+        ArrayList<String> fileList = new ArrayList<>();
+        File folder = new File(datafolder);
+
+        //quit if the folder "data" doesn't exist
+        if (!folder.exists() || !folder.isDirectory()){
+            System.out.println("Error - data folder not found");
+            return fileList;
+        }
+
+        //only use the .txt files
+        File[] files = folder.listFiles(((dir, name) -> name.endsWith(".txt")));
+        if (files == null || files.length == 0){ //check if there's any .txt files in the data folder
+            System.out.println("No files found in data folder");
+            return fileList;
+        }
+
+        //add file names to the list
+        for (File file: files){
+            fileList.add(file.getName());
+        }
+
+        return fileList;
+    }
+
+
+    //display the files
+    private void displayFiles(String[] args){
+        //args[0] should be an int, so this will get the file contents as handled in FileHandler
+        String fileContents = fileHandler.getFileContent(args[0]);
+
+        //if it needs to go to the decoder
+        /*
+        COMMENTED OUT FOR NOW UNTIL DECODER DONE
+        if (args.length == 2){
+            fileContents = cipherDecoder.decipher(fileContents, args[1]);
+        }
+         */
+        System.out.println(fileContents);
+    }
+}
