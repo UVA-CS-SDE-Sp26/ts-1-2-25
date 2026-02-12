@@ -21,14 +21,13 @@ public class FileHandler {
         File folder = new File(dataFolder);
 
         if (!folder.exists() || !folder.isDirectory()) {
-            System.out.println("Error: data folder not found.");
             return fileList;
         }
 
         // Only get .txt files
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
         if (files == null || files.length == 0) {
-            System.out.println("No files found in data folder.");
+
             return fileList;
         }
 
@@ -45,7 +44,7 @@ public class FileHandler {
         File file = new File(dataFolder + "/" + fileName);
 
         if (!file.exists() || !file.isFile()) {
-            return "Error: File " + fileName + " does not exist.";
+            return null;
         }
 
         StringBuilder content = new StringBuilder();
@@ -55,7 +54,7 @@ public class FileHandler {
                 content.append(line).append("\n");
             }
         } catch (IOException e) {
-            return "Error: Could not read file " + fileName + ".";
+            return null;
         }
 
         return content.toString();
@@ -65,7 +64,7 @@ public class FileHandler {
     public String getFileContent(int fileIndex) {
         ArrayList<String> files = listFiles();
         if (fileIndex < 1 || fileIndex > files.size()) {
-            return "Error: File index " + fileIndex + " is out of range.";
+            return null;
         }
         String fileName = files.get(fileIndex - 1);
         return getFileContent(fileName);

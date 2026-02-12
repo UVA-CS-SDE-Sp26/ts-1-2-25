@@ -17,7 +17,7 @@ When listing files:
 
 Check that the data folder exists
 Check that the folder contains readable text files
-Return a numbered list of file names
+Return a list of file names (no format/print)
 
 When retrieving file contents:
 
