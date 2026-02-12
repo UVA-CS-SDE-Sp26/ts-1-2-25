@@ -17,22 +17,21 @@ Design:
 3 Validating the cipher key (crucial step before deciphering)
   - After the cipher key is loaded:
     - Check that the file exists and can be read
-    - Check that the file has exactly two lines
+    - Check that the first two lines exist
     - Check that both lines are the same length
-    - Check that there are no duplicate characters in either line
     - If any of these checks fail, return an error
 4 How the deciphering will work at a high level
   - Load and validate the key
   - For each of the characters in the ciphered input text
-    - If the chracter appears in the cipher line
+    - If the character appears in the cipher line
       - Find its index
       - Replace it with the character at the same index in the real line
     - Else 
       - Leave the character unchanged
   - Return the fully deciphered string
-5 Erros
-  - If file missing, report error to program control
-  - If deciphering cannot be performed, report error
+5 Errors
+  - If file missing or invalid, report error to program control
+  - If deciphering cannot be performed, return an error
   - Program control will handle displaying the error and exiting the program
 
 Testing plan:
@@ -41,7 +40,6 @@ Testing plan:
   - Check if missing key file causes a failure
   - Check if key file with more or fewer than two lines causes a failure
   - Check if key file with unequal line lengths will cause a failure
-  - Check if a key file with duplicate character causes a failure
 2 Run decipher tests:
   - Check if a known ciphered input produces a expected, readable output
   - Check if spaces, punc, newlines etc are perseved in an input
