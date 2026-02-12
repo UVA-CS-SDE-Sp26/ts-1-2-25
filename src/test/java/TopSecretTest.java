@@ -32,6 +32,15 @@ class TopSecretTest {
 
     //Test with an integer, a string that is partly an integer, and a string with no integers
     @Test
-    void isInteger() {
+    void isInteger_validNumber() {
+        assertEquals(5, TopSecret.isInteger("5"), "Becuase 5 is an integer, the method should return it");
+    }
+    @Test
+    void isInteger_invalidNumber() {
+        assertEquals(-1, TopSecret.isInteger("abc"), "Becuase abc isn't an integer, the method should return -1");
+    }
+    @Test
+    void isInteger_invalidNotNumber() {
+        assertEquals(-1, TopSecret.isInteger("abc123"), "Becuase abc123 isn't an integer, the method should return -1");
     }
 }

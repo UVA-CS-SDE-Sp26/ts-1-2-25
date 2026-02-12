@@ -1,4 +1,3 @@
-import static java.sql.Types.NULL;
 
 /**
  * Commmand Line Utility
@@ -35,7 +34,7 @@ public class TopSecret {
     public static void main(String[] args){
         //Determine # of params and what to do from there
         //No params
-        if(args.length == NULL){
+        if(args.length == 0){
             TopSecret listFiles = new TopSecret(args);
             listFiles.printFileList();
 
