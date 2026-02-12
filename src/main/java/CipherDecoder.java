@@ -4,8 +4,24 @@ import java.io.IOException;
 
 public class CipherDecoder {
 
+    // Making sure to match current ProgramControl: default key
+    public String decipherDefaultKey(String input) {
+        return decipherWithKeyFile(input, "ciphers/key.txt");
+    }
+
+    // Making sure to match current ProgramControl: default key
+    public String decipherNewKey(String input, String keyPath) {
+        return decipherWithKeyFile(input, keyPath);
+    }
+
+    // keeps your (program control) original method so any existing tests keep working
     public String decipher(String input) {
-        // if there is no input treat it as an empty string to avoid crashes
+        return decipherDefaultKey(input);
+    }
+
+    // turned previous code into a helper method
+    private String decipherWithKeyFile(String input, String keyPath) {
+        // no input = make empty string to avoid crashes
         if (input == null) {
             input = "";
         }
@@ -15,7 +31,7 @@ public class CipherDecoder {
 
         // first: read the two lines from the key file for errors
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("ciphers/key.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(keyPath));
 
             realLine = reader.readLine();   // line 1: real characters
             cipherLine = reader.readLine(); // line 2: cipher characters

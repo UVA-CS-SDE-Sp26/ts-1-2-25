@@ -20,4 +20,13 @@ class CipherDecoderTest {
 
         assertEquals("!", result);
     }
+
+    @Test
+    void decipherNewKeyUsesProvidedPath() {
+        CipherDecoder decoder = new CipherDecoder();
+
+        String result = decoder.decipherNewKey("b", "ciphers/key.txt");
+
+        assertEquals("a", result);
+    }
 }
