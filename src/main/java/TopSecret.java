@@ -12,11 +12,13 @@ public class TopSecret {
     private int fileNumber;
 
     //Constructors for 0-2 parameters
-    public TopSecret() {
-        setFileNumber(-1);  //-1 indicates that no file was specified, but I don't think these matter as they aren't being used
-        setCipher("");      //Empty string indicates no cipher was specified
+    public TopSecret(String[] args) {
+        //Dont need anymore
+        setFileNumber(Integer.parseInt(args[0]));  //-1 indicates that no file was specified, but I don't think these matter as they aren't being used
+        setCipher(args[1]);      //Empty string indicates no cipher was specified
     }
 
+/* Not needed with the way ProgramControl is designed
     public TopSecret(int fileNumber) {
         setFileNumber(fileNumber);
         setCipher("");      //Empty string indicates no cipher was specified
@@ -27,13 +29,14 @@ public class TopSecret {
         setCipher(cipher);
 
     }
+    */
 
     //Main
     public static void main(String[] args){
         //Determine # of params and what to do from there
         //No params
         if(args.length == NULL){
-            TopSecret listFiles = new TopSecret();
+            TopSecret listFiles = new TopSecret(args);
             listFiles.printFileList();
 
         //1 param - check if first is a number
@@ -42,8 +45,8 @@ public class TopSecret {
             if(fileNumber < 1) {
                 System.out.println("You entered: " + args[0] + " as the first parameter, but it must a number that is at least 1.");
             }
-            TopSecret displayFile = new TopSecret(fileNumber);
-            displayFile.printFile(displayFile.getFileNumber(), displayFile.getCipher());
+            TopSecret displayFile = new TopSecret(args);
+            displayFile.printFile(args);
 
         //2 params - check if first is number, -----check if second is cipher???
         } else if (args.length == 2) {
@@ -51,8 +54,8 @@ public class TopSecret {
             if(fileNumber < 1) {
                 System.out.println("You entered: " + args[0] + " as the first parameter, but it must a number that is at least 1.");
             }
-            TopSecret displayCipheredFile = new TopSecret(fileNumber, args[1]);
-            displayCipheredFile.printFile(displayCipheredFile.getFileNumber(), displayCipheredFile.getCipher());
+            TopSecret displayCipheredFile = new TopSecret(args);
+            displayCipheredFile.printFile(args);
 
         //Some wrong number of params
         }else{
@@ -74,11 +77,15 @@ public class TopSecret {
     //TODO - print list of files
     public void printFileList(){
         //Print the list of files
+        ProgramControl newProgramControl = new ProgramControl();
+        newProgramControl.listFiles();
     }
 
     //TODO - print specified file
-    public void printFile(int fileNumber, String cipher){
+    public void printFile(String[] args){
         //Print the specified file - if cipher is "" then no cipher was specified
+        ProgramControl newProgramControl = new ProgramControl();
+        newProgramControl.run(args);
     }
 
 
