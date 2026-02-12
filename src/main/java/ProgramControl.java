@@ -65,8 +65,13 @@ public class ProgramControl {
         //if it needs to go to the decoder
         /*
         COMMENTED OUT FOR NOW UNTIL DECODER DONE
+        //if no key is provided
+        if (args.length == 1){
+            fileContents = cipherDecoder.decipherDefaultKey(fileContents);
+        }
+        //if there is a key
         if (args.length == 2){
-            fileContents = cipherDecoder.decipher(fileContents, args[1]);
+            fileContents = cipherDecoder.decipherNewKey(fileContents, args[1]);
         }
          */
         System.out.println(fileContents);
