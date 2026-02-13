@@ -1,50 +1,60 @@
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopSecretTest {
-
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    @BeforeEach
+    public void setUp(){
+        outputStreamCaptor.reset();
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+    @AfterEach
+    void reset(){
+        System.setOut(standardOut);
+    }
 
 
     //Test 0, 1, and 2 parameters, and with invalid inputs - the easiest way seemed to be with streams
     @Test
     void mainTestNoArgs() {
+        String[] args = {};
+        TopSecret.main(args);
+        assertEquals("", outputStreamCaptor.toString().trim());
 
     }
 
     @Test
     void mainTestOneArgValid() {
-
+        String[] args = {"3"};
+        TopSecret.main(args);
+        assertEquals("3", outputStreamCaptor.toString().trim());
     }
 
     @Test
     void mainTestOneArgInvalid() {
         String[] args = {"a"};
-
-        PrintStream originalOut = System.out;
-
-        ByteArrayOutputStream output1 = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output1));
         TopSecret.main(args);
-
-        System.setOut(originalOut);
-        assertTrue(output1.toString().contains("must a number"));
+        assertTrue(outputStreamCaptor.toString().contains("must a number"));
     }
     @Test
     void mainTestTwoArgValid() {
-
+        String[] args = {"1", "cdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890ab"};
+        TopSecret.main(args);
+        assertEquals("ERROR: Invalid key", outputStreamCaptor.toString().trim());
     }
 
     @Test
     void mainTestTwoArgInvalid() {
         String[] args = {"a", "aaaa"};
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream output2 = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output2));
         TopSecret.main(args);
-        System.setOut(originalOut);
-        assertTrue(output2.toString().contains("must a number"));
+        assertTrue(outputStreamCaptor.toString().contains("must a number"));
     }
 
     //Test constructor
