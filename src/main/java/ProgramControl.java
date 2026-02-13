@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class ProgramControl {
 
     private FileHandler fileHandler;
-    //private CipherDecoder cipherDecoder;
+    private CipherDecoder cipherDecoder;
 
     public ProgramControl(){
         fileHandler = new FileHandler();
@@ -63,17 +63,14 @@ public class ProgramControl {
         String fileContents = fileHandler.getFileContent(args[0]);
 
         //if it needs to go to the decoder
-        /*
-        COMMENTED OUT FOR NOW UNTIL DECODER DONE
         //if no key is provided
         if (args.length == 1){
             fileContents = cipherDecoder.decipherDefaultKey(fileContents);
         }
         //if there is a key
         if (args.length == 2){
-            fileContents = cipherDecoder.decipherNewKey(fileContents, args[1]);
+            fileContents = cipherDecoder.decipherProvidedKey(fileContents, args[1]);
         }
-         */
         System.out.println(fileContents);
     }
 }
