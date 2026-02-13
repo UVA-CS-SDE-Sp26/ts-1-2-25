@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * FileHandler (Team Member B - Dan)
@@ -36,12 +37,16 @@ public class FileHandler {
             fileList.add(file.getName());
         }
 
+        //sort
+        Collections.sort(fileList);
+
         return fileList;
     }
 
     // Method to get file contents by file name
     public String getFileContent(String fileName) {
-        File file = new File(dataFolder + "/" + fileName);
+        // avoid using '/' so it works on any os
+        File file = new File(dataFolder, fileName);
 
         if (!file.exists() || !file.isFile()) {
             return null;

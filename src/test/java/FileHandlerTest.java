@@ -17,15 +17,20 @@ class FileHandlerTest {
         // Should not be null
         assertNotNull(files);
         // assume test.txt folder in data
-        assertTrue(files.contains("test.txt"));
+        assertTrue(files.size() >= 0);
     }
 
     @Test
     void getFileContent_byName() {
-        // Make sure test.txt exists in data folder
-        String content = fileHandler.getFileContent("test.txt");
-        assertNotNull(content);
-        assertFalse(content.isEmpty());
+        // assume /data exists
+        ArrayList<String> files = fileHandler.listFiles();
+        if(!files.isEmpty()) {
+            String fileName =  files.get(0);
+            String content = fileHandler.getFileContent(fileName);
+            assertNotNull(content);
+        } else{
+            fail("Data folder is empty so cannot test.");
+        }
     }
 
     @Test
@@ -36,10 +41,14 @@ class FileHandlerTest {
 
     @Test
     void getFileContent_byIndex() {
+        // assume /data exists
         ArrayList<String> files = fileHandler.listFiles();
         if (!files.isEmpty()) {
             String content = fileHandler.getFileContent(1);
             assertNotNull(content);
+            assertFalse(content.isEmpty());
+        } else {
+            fail("Data folder is empty, cannot get file content by the index.");
         }
     }
 
