@@ -31,8 +31,11 @@ public class ProgramControlTest {
         String[] args = {"1"};
         ProgramControl.displayFiles(args);
         //using the cipher, the encoded text "test sample text" is "uftu tbnqmf ufyu"
-        assertEquals("test sample text", outputStreamCaptor.toString().trim());
+        assertEquals("Lhmtsdr hmsn ghr C0kk0r L0udqhbjr cdats.", outputStreamCaptor.toString().trim());
+        //The sample text was something that made sense before but my groupmates changed the content of test.txt
+        //to test their stuff so that's why it looks like this now
     }
+
 
     @Test
     void testDisplayFiles2(){
@@ -48,7 +51,9 @@ public class ProgramControlTest {
         String[] args = {"1"};
         ProgramControl.run(args);
         //using the cipher, the encoded text "test sample text" is "uftu tbnqmf ufyu"
-        assertEquals("test sample text", outputStreamCaptor.toString().trim());
+        assertEquals("Lhmtsdr hmsn ghr C0kk0r L0udqhbjr cdats.", outputStreamCaptor.toString().trim());
+        //The sample text was something that made sense before but my groupmates changed the content of test.txt
+        //to test their stuff so that's why it looks like this now
     }
 
     @Test
