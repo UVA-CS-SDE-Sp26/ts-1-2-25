@@ -8,7 +8,7 @@ public class ProgramControl {
 
     public ProgramControl(){
         fileHandler = new FileHandler();
-        //cipherDecoder = new CipherDecoder();
+        cipherDecoder = new CipherDecoder();
     }
 
     //run the whole thing
