@@ -1,10 +1,8 @@
-
 /**
  * Commmand Line Utility
  */
 //This is the class that the command line stuff will be built in
 public class TopSecret {
-
 
     //Fields
     private String cipher;
@@ -12,23 +10,13 @@ public class TopSecret {
 
     //Constructors for 0-2 parameters
     public TopSecret(String[] args) {
-        //Dont need anymore
-        setFileNumber(Integer.parseInt(args[0]));  //-1 indicates that no file was specified, but I don't think these matter as they aren't being used
-        setCipher(args[1]);      //Empty string indicates no cipher was specified
+        if(args.length >= 1) {
+            setFileNumber(Integer.parseInt(args[0]));
+        }
+        if(args.length == 2) {
+            setCipher(args[1]);
+        }
     }
-
-/* Not needed with the way ProgramControl is designed
-    public TopSecret(int fileNumber) {
-        setFileNumber(fileNumber);
-        setCipher("");      //Empty string indicates no cipher was specified
-    }
-
-    public TopSecret(int fileNumber, String cipher) {
-        setFileNumber(fileNumber);
-        setCipher(cipher);
-
-    }
-    */
 
     //Main
     public static void main(String[] args){
@@ -41,8 +29,10 @@ public class TopSecret {
         //1 param - check if first is a number
         } else if (args.length == 1) {
             int fileNumber = isInteger(args[0]);
+            System.out.println(fileNumber);
             if(fileNumber < 1) {
                 System.out.println("You entered: " + args[0] + " as the first parameter, but it must a number that is at least 1.");
+                return;
             }
             TopSecret displayFile = new TopSecret(args);
             displayFile.printFile(args);
@@ -52,6 +42,7 @@ public class TopSecret {
             int fileNumber = isInteger(args[0]);
             if(fileNumber < 1) {
                 System.out.println("You entered: " + args[0] + " as the first parameter, but it must a number that is at least 1.");
+                return;
             }
             TopSecret displayCipheredFile = new TopSecret(args);
             displayCipheredFile.printFile(args);
@@ -60,7 +51,6 @@ public class TopSecret {
         }else{
             System.out.println("Sorry this program accepts up to 2 parameters, first a number, and second a string");
         }
-
     }
 
     //Try and convert the string to int and return, otherwise, return -1, indicating an error
@@ -73,20 +63,15 @@ public class TopSecret {
         }
     }
 
-    //TODO - print list of files
     public void printFileList(){
         //Print the list of files
-        ProgramControl newProgramControl = new ProgramControl();
-        newProgramControl.listFiles();
+        ProgramControl.listFiles();
     }
 
-    //TODO - print specified file
     public void printFile(String[] args){
         //Print the specified file - if cipher is "" then no cipher was specified
-        ProgramControl newProgramControl = new ProgramControl();
-        newProgramControl.run(args);
+        ProgramControl.run(args);
     }
-
 
     //Getters and Setters
     public String getCipher() {

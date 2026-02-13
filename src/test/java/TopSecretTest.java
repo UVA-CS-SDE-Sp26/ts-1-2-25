@@ -1,34 +1,62 @@
 import org.junit.jupiter.api.Test;
-
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopSecretTest {
 
-    //Testing the function to print a list of files
+
+
+    //Test 0, 1, and 2 parameters, and with invalid inputs - the easiest way seemed to be with streams
     @Test
-    void printFileList() {
-        String[] args = new String[2];
-        args[0] = "";
-        args[1] = "";
-        TopSecret testFileList = new TopSecret(args);
-        assertEquals("", testFileList, "");
+    void mainTestNoArgs() {
+
     }
 
-    //Testing the function to print a specific file (file 1)
     @Test
-    void printFile() {
+    void mainTestOneArgValid() {
+
+    }
+
+    @Test
+    void mainTestOneArgInvalid() {
+        String[] args = {"a"};
+
+        PrintStream originalOut = System.out;
+
+        ByteArrayOutputStream output1 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output1));
+        TopSecret.main(args);
+
+        System.setOut(originalOut);
+        assertTrue(output1.toString().contains("must a number"));
+    }
+    @Test
+    void mainTestTwoArgValid() {
+
+    }
+
+    @Test
+    void mainTestTwoArgInvalid() {
+        String[] args = {"a", "aaaa"};
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream output2 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output2));
+        TopSecret.main(args);
+        System.setOut(originalOut);
+        assertTrue(output2.toString().contains("must a number"));
+    }
+
+    //Test constructor
+    @Test
+    void constructorTest(){
         String[] args = new String[2];
         args[0] = "1";
-        args[1] = "";
-        TopSecret testPrintFile = new TopSecret(args);
-        //assertEquals("", testPrintFile.printFile(args), "");
+        args[1] = "aaaa";
+        TopSecret constructorTest = new TopSecret(args);
+        assertEquals(1, constructorTest.getFileNumber(), "getFileNumber should return what was in args[0]");
+        assertEquals("aaaa", constructorTest.getCipher(), "getCipher should return what was in args[1]");
     }
-
-    //Test 0, 1, and 2 parameters
-    @Test
-    void main() {
-    }
-
 
     //Test with an integer, a string that is partly an integer, and a string with no integers
     @Test
