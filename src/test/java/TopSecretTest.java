@@ -1,21 +1,34 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopSecretTest {
-
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    @BeforeEach
+    public void setUp(){
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
 
 
     //Test 0, 1, and 2 parameters, and with invalid inputs - the easiest way seemed to be with streams
     @Test
     void mainTestNoArgs() {
+        String[] args = {};
+
+        assertEquals("", outputStreamCaptor.toString().trim());
 
     }
 
     @Test
     void mainTestOneArgValid() {
-
+        String[] args = {"1"};
+        TopSecret.main(args);
+        assertEquals("test sample text", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -33,7 +46,9 @@ class TopSecretTest {
     }
     @Test
     void mainTestTwoArgValid() {
-
+        String[] args = {"1", "cdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890ab"};
+        TopSecret.main(args);
+        assertEquals("test sample text", outputStreamCaptor.toString().trim());
     }
 
     @Test
