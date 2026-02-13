@@ -45,7 +45,7 @@ Call getFileContent(fileName)
 
 5 Errors
 
-If folder missing or empty, return error
+If folder missing or empty, return empty list
 If file missing, return error
 If file cannot be read, return error
 
@@ -57,7 +57,7 @@ Testing plan:
 Check if:
 folder with multiple files returns correct numbered list
 empty folder returns empty list or warning
-missing folder returns an error
+missing folder returns an empty list
 
 2 Run file content retrieval tests:
 
