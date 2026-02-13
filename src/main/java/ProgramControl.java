@@ -1,4 +1,4 @@
-import java.io.File;
+
 import java.util.ArrayList;
 
 public class ProgramControl {
@@ -11,7 +11,7 @@ public class ProgramControl {
 
         //list the files if there's no arguments
         if (args.length == 0) {
-            ArrayList<String> listOfFiles = listFiles();
+            ArrayList<String> listOfFiles = fileHandler.listFiles();
             int arrayNumber = 0;
             for (int i = 0; i < listOfFiles.size(); i++){
                 arrayNumber += 1;
@@ -27,42 +27,19 @@ public class ProgramControl {
         }
     }
 
-
-    //make a list of the files
     public static ArrayList<String> listFiles(){
-        ArrayList<String> fileList = new ArrayList<>();
-        //list files if no args passed
-        String datafolder = "data";
-        File folder = new File(datafolder);
-
-        //quit if the folder "data" doesn't exist
-        if (!folder.exists() || !folder.isDirectory()){
-            System.out.println("Error - data folder not found");
-            return fileList;
-        }
-
-        //only use the .txt files
-        File[] files = folder.listFiles(((dir, name) -> name.endsWith(".txt")));
-        if (files == null || files.length == 0){ //check if there's any .txt files in the data folder
-            System.out.println("No files found in data folder");
-            return fileList;
-        }
-
-        //add file names to the list
-        for (File file: files){
-            fileList.add(file.getName());
-        }
-
-        return fileList;
+        return fileHandler.listFiles();
     }
-
 
     //display the files
     public static void displayFiles(String[] args){
         //args[0] will convert to an int, so this will get the file contents as handled in FileHandler
         int fileNumber = Integer.parseInt(args[0]);
         String fileContents = fileHandler.getFileContent(fileNumber);
-
+        if (fileContents == null){
+            System.out.println("Error. file not found");
+            return;
+        }
         //if it needs to go to the decoder
         //if no key is provided
         if (args.length == 1){
